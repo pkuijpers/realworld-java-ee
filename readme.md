@@ -15,9 +15,12 @@ For more information on how to this works with other frontends/backends, head ov
 
 # How it works
 
-> Describe the general architecture of your app here
+The application uses Java EE in a [Wildfly Swarm](http://wildfly-swarm.io) container.
 
 # Getting started
 
-> npm install, npm start, etc.
+You need Java and Maven installed.
+
+    mvn wildfly-swarm:run
+    open http://localhost:8080/hello
 
