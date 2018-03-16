@@ -1,0 +1,61 @@
+
+              ,----.
+              |User|
+              |----|
+              |----|
+              `----'
+
+
+,-------.         ,-------.
+|Profile|         |Article|
+|-------|         |-------|
+|-------|         |-------|
+`-------'         `-------'
+
+         ,-------.  ,---.
+         |Comment|  |Tag|
+         |-------|  |---|
+         |-------|  |---|
+         `-------'  `---'
+
+@startuml
+User --> User : follows
+User -- Article : favorited >
+Article *-- Comment
+Article -- Tag
+User -- ContentItem : authored >
+ContentItem <|-- Article
+ContentItem <|-- Comment
+
+class User {
+	username
+	email
+	password
+	bio
+	image
+}
+
+class ContentItem {
+	createdAt
+	updatedAt
+	body
+}
+
+class Article {
+	slug
+	title
+	description
+}
+
+class Comment {
+	id
+}
+
+class Tag {
+	name
+}
+
+ContentRepository ..> ContentItem : contains >
+UserRepository ..> User : contains >
+
+@enduml
