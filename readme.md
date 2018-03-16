@@ -22,9 +22,10 @@ Technologies used:
 
 * Java
 * Maven
-* [Junit 5](https://junit.org/junit5/)
+* [Junit](https://junit.org/junit4/)
 * JAX-RS
-* Codeship
+* [Codeship](https://app.codeship.com/projects/281870)
+* [Arquillian](http://arquillian.org)
 
 # Getting started
 
