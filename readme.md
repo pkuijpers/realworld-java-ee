@@ -23,6 +23,7 @@ Technologies used:
 * Maven
 * [Junit 5](https://junit.org/junit5/)
 * JAX-RS
+* Codeship
 
 # Getting started
 
