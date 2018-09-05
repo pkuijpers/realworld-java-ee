@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.get;
 import static org.hamcrest.Matchers.empty;
 
 @RunWith(Arquillian.class)
-public class ArticleResourceTest {
+public class ArticleResourceIT {
 
     @ArquillianResource
     private URL base;

@@ -55,6 +55,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -67,30 +80,30 @@
             <scope>provided</scope>
         </dependency>
         <!-- WildFly Swarm Fractions -->
-<!--        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>microprofile-config</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>microprofile-config</artifactId>
+                </dependency>-->
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jsonp</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>jpa</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jpa</artifactId>
+                </dependency>-->
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>cdi</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>microprofile-jwt</artifactId>
-        </dependency>-->
-<!--        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>bean-validation</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>microprofile-jwt</artifactId>
+                </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>bean-validation</artifactId>
+                </dependency>-->
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jaxrs</artifactId>
@@ -99,14 +112,14 @@
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jaxrs-jsonp</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>datasources</artifactId>
-        </dependency>-->
-<!--        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>datasources</artifactId>
+                </dependency>-->
+        <!--        <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </dependency>-->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
