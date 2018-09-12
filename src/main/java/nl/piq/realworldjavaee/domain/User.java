@@ -5,15 +5,16 @@ import java.util.Objects;
 public class User {
 	private String username;
 	private String email;
-	private String passwordHash;
 
-	public User(String username, String email, String password) {
+	private Password password;
+
+	User(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
-		this.passwordHash = password;
+		this.password = new Password(password);
 	}
 
-	public String getUsername() {
+	String getUsername() {
 		return username;
 	}
 
@@ -27,16 +28,16 @@ public class User {
 		if (o == null || getClass() != o.getClass()) return false;
 		User user = (User) o;
 		return Objects.equals(username, user.username) &&
-				Objects.equals(email, user.email) &&
-				Objects.equals(passwordHash, user.passwordHash);
+				Objects.equals(email, user.email);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(username, email, passwordHash);
+		return Objects.hash(username, email);
 	}
 
-	public boolean checkPassword(String password) {
-		return password != null && password.equals(passwordHash);
+	boolean hasPassword(String password) {
+	    return this.password.matches(password);
 	}
+
 }
