@@ -15,4 +15,10 @@ class AuthenticationProvider {
         }
         throw new UnauthorizedException();
     }
+
+    User registerUser(String username, String email, String password) {
+        User user = new User(username, email, password);
+        userRepo.save(user);
+        return user;
+    }
 }

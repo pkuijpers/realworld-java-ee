@@ -9,6 +9,10 @@ public class User {
 	private Password password;
 
 	User(String username, String email, String password) {
+		Objects.requireNonNull(username);
+		Objects.requireNonNull(email);
+		Objects.requireNonNull(password);
+
 		this.username = username;
 		this.email = email;
 		this.password = new Password(password);
@@ -18,7 +22,7 @@ public class User {
 		return username;
 	}
 
-	public String getEmail() {
+	String getEmail() {
 		return email;
 	}
 
