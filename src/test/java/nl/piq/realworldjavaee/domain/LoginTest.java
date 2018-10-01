@@ -13,9 +13,11 @@ public class LoginTest {
     private final UserRepository userRepo = new InMemoryUserRepository();
     private final AuthenticationProvider auth = new AuthenticationProvider(userRepo);
 
+    private User user;
+
     @Before
     public void setUp() {
-        auth.registerUser(USER, "user@test.nl", PASSWORD);
+        user = auth.registerUser(USER, "user@test.nl", PASSWORD);
     }
 
     @Test(expected = UnauthorizedException.class)
@@ -25,9 +27,9 @@ public class LoginTest {
 
     @Test
     public void login_withCorrectCredentials_returnsUser() {
-        User user = auth.login(USER, PASSWORD);
+        User loggedIn = auth.login(USER, PASSWORD);
 
-        assertThat(user.getUsername()).isEqualTo(USER);
+        assertThat(loggedIn).isEqualTo(user);
     }
 
     @Test(expected = UnauthorizedException.class)
@@ -35,4 +37,28 @@ public class LoginTest {
         auth.login(USER, "wrongPassword");
     }
 
+    @Test(expected = UnauthorizedException.class)
+    public void currentUser_whenNotLoggedIn_throwsException() {
+        auth.currentUser();
+    }
+
+    @Test
+    public void currentUser_whenLoggedIn_returnsUser() {
+        user = auth.login(USER, PASSWORD);
+
+        User currentUser = auth.currentUser();
+
+        assertThat(currentUser).isEqualTo(user);
+    }
+
+    @Test(expected = UnauthorizedException.class)
+    public void currentUser_afterLoginFailure_throwsException() {
+        try {
+            auth.login(USER, "wrongPassword");
+        } catch (UnauthorizedException e) {
+            // continue
+        }
+
+        auth.currentUser();
+    }
 }
