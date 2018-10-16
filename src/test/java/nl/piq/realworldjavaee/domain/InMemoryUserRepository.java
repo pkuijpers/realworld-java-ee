@@ -1,5 +1,6 @@
 package nl.piq.realworldjavaee.domain;
 
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -15,5 +16,16 @@ class InMemoryUserRepository implements UserRepository {
     @Override
     public User find(String name) {
         return users.get(name);
+    }
+
+    @Override
+    public Profile getProfile(String username) {
+        Objects.requireNonNull(username);
+
+        User user = find(username);
+        if (user == null) {
+            throw new NotFoundException("User " + username + " not found.");
+        }
+        return new Profile(user);
     }
 }
