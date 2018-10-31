@@ -1,22 +1,34 @@
 package nl.piq.realworldjavaee.domain;
 
 import java.net.URL;
+import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class User {
+
+	public static final User ANONYMOUS = new User("anonymous", "", "") {
+        @Override
+        public boolean isFollowing(Profile profile) {
+            return false;
+        }
+    };
+
 	private String username;
     private Password password;
 	private String email;
     private String bio;
     private URL image;
+	private Set<Profile> following = new HashSet<>();
 
-    User(String username, String email, String password) {
+	User(String username, String email, String password) {
 		setUsername(username);
 		setEmail(email);
 		setPassword(password);
 	}
 
-	String getUsername() {
+    String getUsername() {
 		return username;
 	}
 
@@ -70,5 +82,15 @@ public class User {
 
     public void setPassword(String newPassword) {
         this.password = new Password(newPassword);
+    }
+
+	public Profile follow(Profile profile) {
+        Objects.requireNonNull(profile);
+        following.add(profile);
+        return profile;
+	}
+
+    public boolean isFollowing(Profile profile) {
+    	return following.contains(profile);
     }
 }

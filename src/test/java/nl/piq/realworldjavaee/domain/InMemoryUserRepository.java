@@ -19,13 +19,19 @@ class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Profile getProfile(String username) {
+    public Profile getProfile(String username) throws NotFoundException {
+        return getProfileAsUser(username, User.ANONYMOUS);
+    }
+
+    @Override
+    public Profile getProfileAsUser(String username, User currentUser) {
         Objects.requireNonNull(username);
+        Objects.requireNonNull(currentUser);
 
         User user = find(username);
         if (user == null) {
             throw new NotFoundException("User " + username + " not found.");
         }
-        return new Profile(user);
+        return new Profile(user, currentUser);
     }
 }
