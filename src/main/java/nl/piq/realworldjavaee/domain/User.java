@@ -1,7 +1,6 @@
 package nl.piq.realworldjavaee.domain;
 
 import java.net.URL;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -84,13 +83,18 @@ public class User {
         this.password = new Password(newPassword);
     }
 
-	public Profile follow(Profile profile) {
+	public void follow(Profile profile) {
         Objects.requireNonNull(profile);
         following.add(profile);
-        return profile;
 	}
+
+	public void unfollow(Profile p) {
+		Objects.requireNonNull(p);
+		following.remove(p);
+    }
 
     public boolean isFollowing(Profile profile) {
     	return following.contains(profile);
     }
+
 }

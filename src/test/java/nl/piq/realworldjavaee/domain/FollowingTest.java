@@ -27,17 +27,13 @@ public class FollowingTest {
     }
 
     @Test
-    public void follow_withProfile_returnsProfile() {
-        Profile profile = userA.follow(userRepository.getProfile("userB"));
-
-        assertThat(profile.getUsername()).isEqualTo("userB");
-    }
-
-    @Test
     public void follow_withProfile_startsFollowing() {
-        Profile profile = userA.follow(userRepository.getProfile("userB"));
+        Profile profileA = userRepository.getProfile("userA");
+        assertThat(userB.isFollowing(profileA)).isFalse();
 
-        assertThat(userA.isFollowing(profile)).isTrue();
+        userB.follow(profileA);
+
+        assertThat(userB.isFollowing(profileA)).isTrue();
     }
 
     @Test
@@ -67,5 +63,30 @@ public class FollowingTest {
         Profile profileA = userRepository.getProfile("userA");
 
         assertThat(profileA.isFollowing()).isFalse();
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void unfollow_withNullParameter_throwsException() {
+        userA.unfollow(null);
+    }
+
+    @Test
+    public void unfollow_whenFollowing_stopsFollowing() {
+        Profile profileB = userRepository.getProfileAsUser("userB", userA);
+        assertThat(userA.isFollowing(profileB)).isTrue();
+
+        userA.unfollow(profileB);
+
+        assertThat(userA.isFollowing(profileB)).isFalse();
+    }
+
+    @Test
+    public void unfollow_whenNotFollowing_doesNothing() {
+        Profile profileA = userRepository.getProfileAsUser("userA", userB);
+        assertThat(userB.isFollowing(profileA)).isFalse();
+
+        userB.unfollow(profileA);
+
+        assertThat(userB.isFollowing(profileA)).isFalse();
     }
 }
