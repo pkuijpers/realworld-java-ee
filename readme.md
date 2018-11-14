@@ -5,7 +5,7 @@
 
 ### [Demo](https://github.com/gothinkster/realworld)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-[ ![Codeship Status for pkuijpers/realworld-java-ee](https://app.codeship.com/projects/9d84a730-0b77-0136-a02e-3a0ed76fbcd7/status?branch=master)](https://app.codeship.com/projects/281870)
+[![Build Status](https://travis-ci.com/pkuijpers/realworld-java-ee.svg?branch=master)](https://travis-ci.com/pkuijpers/realworld-java-ee)
 
 This codebase was created to demonstrate a fully fledged fullstack application built with Java EE including CRUD operations, authentication, routing, pagination, and more.
 
