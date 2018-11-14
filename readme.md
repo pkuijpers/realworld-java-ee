@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.com/pkuijpers/realworld-java-ee.svg?branch=master)](https://travis-ci.com/pkuijpers/realworld-java-ee)
 
-[![SonarCloud Status](https://sonarcloud.io/api/project_badges/measure?project=pkuijpers_realworld-java-ee&metric=alert_status)](https://sonarcloud.io/api/project_badges/measure?project=pkuijpers_realworld-java-ee)
+[![SonarCloud Status](https://sonarcloud.io/api/project_badges/measure?project=pkuijpers_realworld-java-ee&metric=alert_status)](https://sonarcloud.io/dashboard?id=pkuijpers_realworld-java-ee)
 
 This codebase was created to demonstrate a fully fledged fullstack application built with Java EE including CRUD operations, authentication, routing, pagination, and more.
 
