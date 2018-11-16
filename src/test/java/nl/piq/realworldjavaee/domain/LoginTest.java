@@ -1,7 +1,8 @@
 package nl.piq.realworldjavaee.domain;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,14 +16,15 @@ public class LoginTest {
 
     private User user;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         user = auth.registerUser(USER, "user@test.nl", PASSWORD);
     }
 
-    @Test(expected = UnauthorizedException.class)
+    @Test
     public void login_withIncorrectCredentials_throwsException() {
-        auth.login("dummy", "dummy");
+        Assertions.assertThrows(UnauthorizedException.class, () ->
+            auth.login("dummy", "dummy"));
     }
 
     @Test
@@ -32,14 +34,16 @@ public class LoginTest {
         assertThat(loggedIn).isEqualTo(user);
     }
 
-    @Test(expected = UnauthorizedException.class)
+    @Test
     public void login_withIncorrectPassword_throwsException() {
-        auth.login(USER, "wrongPassword");
+        Assertions.assertThrows(UnauthorizedException.class, () ->
+            auth.login(USER, "wrongPassword"));
     }
 
-    @Test(expected = UnauthorizedException.class)
+    @Test
     public void currentUser_whenNotLoggedIn_throwsException() {
-        auth.currentUser();
+        Assertions.assertThrows(UnauthorizedException.class, () ->
+            auth.currentUser());
     }
 
     @Test
@@ -51,7 +55,7 @@ public class LoginTest {
         assertThat(currentUser).isEqualTo(user);
     }
 
-    @Test(expected = UnauthorizedException.class)
+    @Test
     public void currentUser_afterLoginFailure_throwsException() {
         try {
             auth.login(USER, "wrongPassword");
@@ -59,6 +63,7 @@ public class LoginTest {
             // continue
         }
 
-        auth.currentUser();
+        Assertions.assertThrows(UnauthorizedException.class, () ->
+            auth.currentUser());
     }
 }

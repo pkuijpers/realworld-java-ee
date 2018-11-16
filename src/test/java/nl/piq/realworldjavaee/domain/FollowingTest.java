@@ -1,8 +1,8 @@
 package nl.piq.realworldjavaee.domain;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ public class FollowingTest {
     private String username = "username";
     private User userA, userB;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         userA = auth.registerUser("userA", "userA@test.nl", "userApw" );
         userB = auth.registerUser("userB", "userB@test.nl", "userBpw" );
@@ -21,9 +21,10 @@ public class FollowingTest {
         userA.follow(userRepository.getProfile("userB"));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void follow_withNullParameter_throwsException() {
-        userA.follow(null);
+        Assertions.assertThrows(NullPointerException.class,
+                () -> userA.follow(null));
     }
 
     @Test
@@ -65,9 +66,10 @@ public class FollowingTest {
         assertThat(profileA.isFollowing()).isFalse();
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void unfollow_withNullParameter_throwsException() {
-        userA.unfollow(null);
+        Assertions.assertThrows(NullPointerException.class, () ->
+            userA.unfollow(null));
     }
 
     @Test

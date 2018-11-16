@@ -1,6 +1,7 @@
 package nl.piq.realworldjavaee.domain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -9,19 +10,22 @@ public class RegistrationTest {
     private UserRepository userRepo = new InMemoryUserRepository();
     private AuthenticationProvider authProvider = new AuthenticationProvider(userRepo);
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void register_withMissingUsername_throwsException() {
-        authProvider.registerUser(null, "test@test.nl", "test");
+        Assertions.assertThrows(NullPointerException.class, () ->
+            authProvider.registerUser(null, "test@test.nl", "test"));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void register_withMissingEmail_throwsException() {
-        authProvider.registerUser("test", null, "test");
+        Assertions.assertThrows(NullPointerException.class, () ->
+            authProvider.registerUser("test", null, "test"));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void register_withMissingPassword_throwsException() {
-        authProvider.registerUser("test", "test@test.nl", null);
+        Assertions.assertThrows(NullPointerException.class, () ->
+            authProvider.registerUser("test", "test@test.nl", null));
     }
 
     @Test

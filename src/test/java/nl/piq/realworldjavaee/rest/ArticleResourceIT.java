@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 
 import java.net.URL;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.empty;
 

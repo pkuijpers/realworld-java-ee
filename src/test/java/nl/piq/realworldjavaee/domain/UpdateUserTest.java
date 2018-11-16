@@ -1,7 +1,7 @@
 package nl.piq.realworldjavaee.domain;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.net.URL;
 
@@ -11,7 +11,7 @@ public class UpdateUserTest {
 
     private User user;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         user = new User("testUser", "test@test.nl", "12345");
     }

@@ -2,7 +2,7 @@ package nl.piq.realworldjavaee.rest;
 
 import nl.piq.realworldjavaee.domain.Article;
 import org.json.JSONException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 import javax.json.Json;
